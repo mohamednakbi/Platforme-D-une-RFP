@@ -1,0 +1,130 @@
+.container {
+  color: black; /* Définir la couleur du texte en noir pour tout le contenu */
+  max-width: 70%;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10%;
+  font-family: Arial, sans-serif;
+}
+
+.other-candidates-title {
+  color: green;
+}
+
+.candidate h3 {
+  margin-top: 0;
+  color: black; /* Définir la couleur du texte en noir */
+  font-family: 'Open Sans', sans-serif;
+}
+
+.other-candidates {
+  color: black;
+}
+
+.result {
+  margin-top: 20px;
+}
+
+.candidate,
+.other-candidates {
+  margin-bottom: 40px;
+}
+
+.card-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+.card {
+  display: flex;
+  flex-direction: column; /* Arrange content vertically */
+  justify-content: flex-start; /* Align items at the start of the card */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  background: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  width: 100%; /* Ensure it uses full width of the parent container */
+  max-width: 300px; /* Maintain max width */
+}
+
+.card p {
+  margin: 5px 0;
+  color: black; /* Définir la couleur du texte en noir */
+}
+
+.card strong {
+  color: black;
+}
+
+.card .card-content {
+  flex-grow: 1; /* Allow content to expand as needed */
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+header {
+  background-color: #2e679d !important;
+
+  color: white;
+  padding: 1em 0;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  color: #ccbb00;
+}
+
+main {
+  padding: 2em;
+}
+
+section {
+  margin-bottom: 2em;
+  background-color: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: #333;
+  border-bottom: 1px solid #007bff;
+  padding-bottom: 0.5em;
+}
+
+.cv,
+.context,
+.reference,
+.technology,
+.technologies {
+  margin-bottom: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.cv-title,
+.context-name,
+.reference-title,
+.technology-name,
+.technologies {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.cv-content,
+.context-description,
+.reference-content,
+.technology-version {
+  color: #555;
+}

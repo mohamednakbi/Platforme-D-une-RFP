@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr" class="container">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Résultats RFP</title>
+  </head>
+  <body>
+    <header>
+      <h1>Résultats RFP</h1>
+    </header>
+    <main>
+      <section id="candidats">
+        <h2>Candidats</h2>
+        <div class="card-grid">
+          <div class="card-grid" *ngFor="let cv of cvArray">
+            <div class="cv">
+              <div class="cv-title">Tîtle CV : {{ formatizeCV(cv.key) }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="contexts">
+        <h2>Context</h2>
+        <div class="card-grid">
+          <div class="card" *ngFor="let context of response?.contexts">
+            <div class="context">
+              <div class="context-name">Context : {{ context.name }}</div>
+              <div class="context-description">Context Description : {{ context.description }}</div>
+              <!--              <div class="context-description">USER : {{ context.userConfig?.username }}</div>-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="references">
+        <h2>Références</h2>
+        <div class="card-grid">
+          <div class="card" *ngFor="let reference of response?.references">
+            <div class="reference">
+              <div class="reference-title">{{ reference.title }}</div>
+              <div class="reference-content">{{ reference.content }}</div>
+              <!--              <div class="reference-content">USER : {{ reference.userConfig?.username }}</div>-->
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="technologies">
+        <h2>Technologies</h2>
+        <div class="card-grid">
+          <div class="card-grid" *ngFor="let tech of technologyArray">
+            <div class="cv">
+              <div class="technologies">Technologies: {{ formatizeTEchno(tech.key) }}</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

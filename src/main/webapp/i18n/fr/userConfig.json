@@ -1,0 +1,35 @@
+{
+  "rfpApp": {
+    "userConfig": {
+      "home": {
+        "title": "UserConfigs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau User Config",
+        "createOrEditLabel": "Créer ou éditer un User Config",
+        "notFound": "Aucun User Config trouvé"
+      },
+      "created": "Un nouveau User Config a été créé avec l'identifiant {{ param }}",
+      "updated": "Le User Config avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le User Config avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le User Config {{ id }} ?"
+      },
+      "detail": {
+        "title": "User Config"
+      },
+      "id": "ID",
+      "userId": "User Id",
+      "email": "Email",
+      "firstname": "Firstname",
+      "lastname": "Lastname",
+      "username": "Username",
+      "password": "Password",
+      "role": "Role",
+      "context": "Context",
+      "document": "Document",
+      "reference": "Reference",
+      "technologys": "Technologys",
+      "cV": "C V"
+    }
+  }
+}

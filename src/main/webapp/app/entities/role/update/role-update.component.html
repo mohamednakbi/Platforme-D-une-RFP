@@ -1,0 +1,65 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-role-heading" data-cy="RoleCreateUpdateHeading" jhiTranslate="rfpApp.role.home.createOrEditLabel">
+        Create or edit a Role
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div hidden class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="rfpApp.role.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3" hidden>
+          <label class="form-label" for="field_groupId" jhiTranslate="rfpApp.role.groupId">Group Id</label>
+          <input type="text" class="form-control" name="groupId" id="field_groupId" data-cy="groupId" formControlName="groupId" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="rfpApp.role.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_permission" jhiTranslate="rfpApp.role.permission">Permission</label>
+          <input
+            type="checkbox"
+            class="form-check"
+            name="permission"
+            id="field_permission"
+            data-cy="permission"
+            formControlName="permission"
+          />
+
+          <select name="authorities[]" id="choix_authorities" multiple formControlName="authorities">
+            <option value="Admis">Admis</option>
+            S
+            <option value="Client-project-lead">Client</option>
+          </select>
+          <br /><br />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-outline-primary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-outline-success"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

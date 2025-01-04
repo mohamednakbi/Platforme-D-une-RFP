@@ -1,0 +1,26 @@
+{
+  "rfpApp": {
+    "technology": {
+      "home": {
+        "title": "Technologies",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Technology",
+        "createOrEditLabel": "Créer ou éditer un Technology",
+        "notFound": "Aucun Technology trouvé"
+      },
+      "created": "Un nouveau Technology a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Technology avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Technology avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Technology {{ id }} ?"
+      },
+      "detail": {
+        "title": "Technology"
+      },
+      "id": "ID",
+      "name": "Name",
+      "version": "Version",
+      "userConfigs": "User Configs"
+    }
+  }
+}

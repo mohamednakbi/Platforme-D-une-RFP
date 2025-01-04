@@ -1,0 +1,70 @@
+<div class="container" class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-context-heading" data-cy="ContextCreateUpdateHeading" jhiTranslate="rfpApp.context.home.createOrEditLabel">
+        Create or edit a Context
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div hidden class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="rfpApp.context.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="rfpApp.context.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_description" jhiTranslate="rfpApp.context.description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_userConfig" jhiTranslate="rfpApp.context.userConfig">User Config</label>
+          <select
+            class="form-control"
+            id="field_userConfig"
+            data-cy="userConfig"
+            name="userConfig"
+            formControlName="userConfig"
+            [compareWith]="compareUserConfig"
+          >
+            <option [ngValue]="null"></option>
+            @for (userConfigOption of userConfigsSharedCollection; track $index) {
+              <option [ngValue]="userConfigOption">{{ userConfigOption.username }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-outline-primary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-outline-success"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

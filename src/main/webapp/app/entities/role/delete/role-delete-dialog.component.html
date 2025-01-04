@@ -1,0 +1,26 @@
+@if (role) {
+  <form class="form-remove" name="deleteForm" (ngSubmit)="confirmDelete(role.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="roleDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+
+      <span class="btn btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></span>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p id="jhi-delete-role-heading" jhiTranslate="rfpApp.role.delete.question" [translateValues]="{ id: role.name }">
+        Are you sure you want to delete Role {{ role.name }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-role" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

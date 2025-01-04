@@ -1,0 +1,26 @@
+{
+  "rfpApp": {
+    "context": {
+      "home": {
+        "title": "Contexts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Context",
+        "createOrEditLabel": "Create or edit a Context",
+        "notFound": "No Contexts found"
+      },
+      "created": "A new Context is created with identifier {{ param }}",
+      "updated": "A Context is updated with identifier {{ param }}",
+      "deleted": "A Context is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Context {{ id }}?"
+      },
+      "detail": {
+        "title": "Context"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "userConfig": "User Config"
+    }
+  }
+}

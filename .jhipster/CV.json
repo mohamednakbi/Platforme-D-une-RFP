@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20240424094836"
+  },
+  "applications": ["rfp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    }
+  ],
+  "name": "CV",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityField": "username",
+      "otherEntityName": "userConfig",
+      "relationshipName": "userConfig",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": false
+}

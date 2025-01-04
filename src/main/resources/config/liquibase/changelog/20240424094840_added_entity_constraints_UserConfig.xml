@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity UserConfig.
+    -->
+    <changeSet id="20240424094840-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="role_id"
+                                 baseTableName="user_config"
+                                 constraintName="fk_user_config__role_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="role"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="user_config_id"
+                                 baseTableName="rel_user_config__technologys"
+                                 constraintName="fk_rel_user_config__technologys__user_config_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="user_config"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="technologys_id"
+                                 baseTableName="rel_user_config__technologys"
+                                 constraintName="fk_rel_user_config__technologys__technologys_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="technology"
+                                 />
+    </changeSet>
+</databaseChangeLog>

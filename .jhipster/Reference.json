@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240424094838"
+  },
+  "applications": ["rfp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastmodified",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Reference",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "userConfig",
+      "otherEntityRelationshipName": "reference",
+      "relationshipName": "userConfig",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": false
+}

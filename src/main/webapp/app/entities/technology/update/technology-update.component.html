@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-technology-heading" data-cy="TechnologyCreateUpdateHeading" jhiTranslate="rfpApp.technology.home.createOrEditLabel">
+        Create or edit a Technology
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div hidden class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="rfpApp.technology.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_name" jhiTranslate="rfpApp.technology.name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_version" jhiTranslate="rfpApp.technology.version">Version</label>
+          <input type="text" class="form-control" name="version" id="field_version" data-cy="version" formControlName="version" />
+        </div>
+
+        <div class="mb-3">
+          <label for="field_userConfigs" jhiTranslate="rfpApp.technology.userConfigs">User Configs</label>
+          <select
+            class="form-control"
+            id="field_userConfigs"
+            data-cy="userConfigs"
+            multiple
+            name="userConfigs"
+            formControlName="userConfigs"
+            [compareWith]="compareUserConfig"
+          >
+            @for (userConfigOption of userConfigsSharedCollection; track $index) {
+              <option [ngValue]="userConfigOption">{{ userConfigOption.username }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-outline-primary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-outline-success"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "rfpApp": {
+    "cV": {
+      "home": {
+        "title": "CVS",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau CV",
+        "createOrEditLabel": "Créer ou éditer un CV",
+        "notFound": "Aucun CV trouvé"
+      },
+      "created": "Un nouveau CV a été créé avec l'identifiant {{ param }}",
+      "updated": "Le CV avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le CV avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le CV {{ id }} ?"
+      },
+      "detail": {
+        "title": "CV"
+      },
+      "id": "ID",
+      "title": "Title",
+      "content": "Content",
+      "userConfig": "User Config"
+    }
+  }
+}

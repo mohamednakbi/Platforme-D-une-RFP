@@ -1,0 +1,27 @@
+{
+  "rfpApp": {
+    "document": {
+      "home": {
+        "title": "Documents",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Document",
+        "createOrEditLabel": "Créer ou éditer un Document",
+        "notFound": "Aucun Document trouvé"
+      },
+      "created": "Un nouveau Document a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Document avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Document avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Document {{ id }} ?"
+      },
+      "detail": {
+        "title": "Document"
+      },
+      "id": "ID",
+      "title": "Title",
+      "content": "Content",
+      "documentType": "Document Type",
+      "userConfig": "User Config"
+    }
+  }
+}

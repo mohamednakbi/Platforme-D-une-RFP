@@ -1,0 +1,35 @@
+{
+  "annotations": {
+    "changelogDate": "20240424094835"
+  },
+  "applications": ["rfp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "groupId",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "permission",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "Role",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "userConfig",
+      "otherEntityRelationshipName": "role",
+      "relationshipName": "userConfig",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": false
+}

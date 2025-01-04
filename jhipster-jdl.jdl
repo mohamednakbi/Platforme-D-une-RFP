@@ -1,0 +1,113 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType oauth2
+    baseName rfp
+    blueprints []
+    buildTool maven
+    cacheProvider no
+    clientFramework no
+    clientPackageManager npm
+    creationTimestamp 1666084845236
+    databaseType sql
+    devDatabaseType postgresql
+    dtoSuffix DTO
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix jhi
+    jhipsterVersion "7.9.4"
+    languages [fr, en]
+    messageBroker no
+    microfrontend false
+    nativeLanguage en
+    packageName com.satoripop.rfp
+    prodDatabaseType postgresql
+    reactive false
+    searchEngine no
+    serverPort 8080
+    serviceDiscoveryType no
+    skipClient false
+    skipUserManagement true
+    testFrameworks []
+    websocket false
+    clientFramework angularX
+
+  }
+
+  entities Technology, Role, CV, Document, SimilarReference, Context, UserConfig
+}
+entity Technology {
+
+    name String
+    version String
+}
+
+entity Role {
+    groupId UUID
+    name String
+    permission Boolean
+
+}
+
+entity CV {
+    title String
+    content String
+}
+
+entity Document {
+    title String
+    content String
+    documentType DocumentType
+}
+
+entity UserConfig {
+    userId UUID
+    email String
+    firstname String
+    lastname String
+    username String
+    password String
+}
+
+entity SimilarReference {
+    title String
+    content String
+    lastmodified String
+}
+
+entity Context {
+
+    name String
+    description String
+}
+
+enum Authorization {
+    USER
+    ADMIN
+}
+
+enum DocumentType {
+    EXCEL
+    WORD
+}
+
+relationship OneToOne {
+    CV{userConfig(username)} to UserConfig
+}
+
+relationship OneToMany {
+    Role to UserConfig
+    UserConfig to Context
+    UserConfig to Document
+    UserConfig to SimilarReference
+}
+relationship ManyToMany {
+ UserConfig to Technology
+}
+
+paginate Technology, Role, CV, Document, SimilarReference, Context, UserConfig with pagination
+
+dto * with mapstruct
+
+service all with serviceImpl

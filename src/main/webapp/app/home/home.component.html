@@ -1,0 +1,56 @@
+<!doctype html>
+<html class="container" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title class="titlee">Request for Proposal (RFP)</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <img src="../../content/images/(2).svg" alt="Logo" class="logo" />
+        <h1 class="text-center titlee">Request for Proposal (RFP)</h1>
+        <!-- Ajout de la classe titlee ici -->
+      </header>
+
+      <main>
+        <div class="row">
+          <div class="col-md-6">
+            <h2>Automate Your RFP Responses with AI</h2>
+            <div>
+              @if (account() !== null) {
+                <div class="alert alert-success">
+                  @if (account()) {
+                    <span id="home-logged-message" jhiTranslate="home.logged.message" [translateValues]="{ username: account()!.login }"
+                      >You are logged in
+                    </span>
+                  }
+                </div>
+              } @else {
+                <div class="alert alert-warning">
+                  <span jhiTranslate="global.messages.info.authenticated.prefix">If you want to </span>
+                  <a class="alert-link" (click)="login()">sign in</a>
+                </div>
+              }
+            </div>
+            <div class="alert alert-info alert-dismissible fade show">
+              <p>
+                Welcome to Revolutionizing the traditional process of responding to proposals by harnessing the power of artificial
+                intelligence. Our goal is to automate the review of proposal documents through a comprehensive interface that not only
+                generates proposals but also aligns requirements with potential suppliers, while providing assistance in proposal creation
+                and management. These solutions offer significant potential for reducing the manual effort required to process proposals.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img style="height: 313px; width: 350px; margin-left: 60px" src="../../content/images/photo-16.png" class="img-fluid" />
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- Import Bootstrap JS if needed -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

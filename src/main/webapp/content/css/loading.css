@@ -1,0 +1,126 @@
+@keyframes lds-pacman-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes lds-pacman-1 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
+@keyframes lds-pacman-2 {
+  0% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+@-webkit-keyframes lds-pacman-2 {
+  0% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+  50% {
+    -webkit-transform: rotate(225deg);
+    transform: rotate(225deg);
+  }
+  100% {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+@keyframes lds-pacman-3 {
+  0% {
+    -webkit-transform: translate(190px, 0);
+    transform: translate(190px, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(70px, 0);
+    transform: translate(70px, 0);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes lds-pacman-3 {
+  0% {
+    -webkit-transform: translate(190px, 0);
+    transform: translate(190px, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translate(70px, 0);
+    transform: translate(70px, 0);
+    opacity: 1;
+  }
+}
+.containerc2 {
+  background-color: white;
+}
+.app-loading {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 10em;
+  color: #0e0e13; /* Optional: to make text stand out on the background */
+}
+
+.app-loading p {
+  display: block;
+  font-size: 1.17em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: normal;
+  margin-top: 20px; /* Add some space between the spinner and the text */
+}
+
+.spinner {
+  border: 16px solid #e8ff04; /* Light grey */
+  border-top: 16px solid #0e0e13; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

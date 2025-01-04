@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (role()) {
+      <div>
+        <h2 data-cy="roleDetailsHeading"><span jhiTranslate="rfpApp.role.detail.title">Role</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ role()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.role.groupId">Group Id</span></dt>
+          <dd>
+            <span>{{ role()!.groupId }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.role.name">Name</span></dt>
+          <dd>
+            <span>{{ role()!.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.role.permission">Permission</span></dt>
+          <dd>
+            <span>{{ role()!.permission }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/role', role()!.id, 'edit']" class="btn btn-success">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

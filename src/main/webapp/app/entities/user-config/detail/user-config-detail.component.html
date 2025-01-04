@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (userConfig()) {
+      <div>
+        <h2 data-cy="userConfigDetailsHeading">
+          <span>User </span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ userConfig()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.userConfig.userId">User Id</span></dt>
+          <dd>
+            <span>{{ userConfig()!.userId }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.userConfig.email">Email</span></dt>
+          <dd>
+            <span>{{ userConfig()!.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.userConfig.firstname">Firstname</span></dt>
+          <dd>
+            <span>{{ userConfig()!.firstname }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.userConfig.lastname">Lastname</span></dt>
+          <dd>
+            <span>{{ userConfig()!.lastname }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.userConfig.username">Username</span></dt>
+          <dd>
+            <span>{{ userConfig()!.username }}</span>
+          </dd>
+
+          <dt><span jhiTranslate="rfpApp.userConfig.role">Role</span></dt>
+          <dd>
+            @if (userConfig()!.role) {
+              <div>
+                <a [routerLink]="['/role', userConfig()!.role?.id, 'view']">{{ userConfig()!.role?.name }}</a>
+              </div>
+            }
+          </dd>
+          <dt hidden><span style="color: black" jhiTranslate="rfpApp.userConfig.technologys">Technologys</span></dt>
+          <dd>
+            @for (technologys of userConfig()!.technologys; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/technology', technologys.id, 'view']">{{ technologys?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/user-config', userConfig()!.id, 'edit']" class="btn btn-success">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div style="background-color: white">
+  <div>
+    <router-outlet name="navbar"></router-outlet>
+  </div>
+
+  <div>
+    <jhi-side-navbar *ngIf="account() !== null"></jhi-side-navbar>
+    <router-outlet
+      style="
+        .move-right {
+          margin-left: 240px;
+          transition: margin-left 0.3s;
+        }
+      "
+    ></router-outlet>
+  </div>
+
+  <div>
+    <jhi-footer></jhi-footer>
+  </div>
+</div>

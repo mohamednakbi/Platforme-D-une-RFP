@@ -1,0 +1,104 @@
+<div class="container">
+  <h2 id="page-heading" data-cy="CVHeading">
+    <span class="tittle" jhiTranslate="rfpApp.cV.home.title">CVS</span>
+
+    <div class="d-flex justify-content-end">
+      <button hidden class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="rfpApp.cV.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button id="jh-create-entity" data-cy="entityCreateButton" class="btn btn-info jh-create-entity create-cv" [routerLink]="['/cv/new']">
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="rfpApp.cV.home.createLabel">Create a new CV</span>
+      </button>
+    </div>
+  </h2>
+
+  <input type="text" [(ngModel)]="CvTitle" (input)="searchCVBytitle()" placeholder="Search by CV title" class="form-control mb-3" />
+
+  <jhi-alert-error></jhi-alert-error>
+  <jhi-alert></jhi-alert>
+
+  <div *ngIf="filteredCVs?.length === 0" class="alert alert-warning" id="no-result">
+    <span jhiTranslate="rfpApp.cV.home.notFound">No CVS found</span>
+  </div>
+
+  <div *ngIf="filteredCVs && filteredCVs.length > 0" class="table-responsive table-entities" id="entities">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="title">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.cV.title">Title</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="content">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.cV.content">Content</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userConfig.username">
+            <div class="d-flex">
+              <span>Username </span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cv of filteredCVs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/cv', cv.id, 'view']">{{ cv.id }}</a>
+          </td>
+          <td>{{ cv.title }}</td>
+          <td>{{ cv.content }}</td>
+          <td>
+            <div *ngIf="cv.userConfig">
+              <a [routerLink]="['/user-config', cv.userConfig.username, 'view']">{{ cv.userConfig.username }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/cv', cv.id, 'view']" class="btn btn-sm" data-cy="entityDetailsButton">
+                <fa-icon class="iconn" icon="eye"></fa-icon>
+              </a>
+              <a [routerLink]="['/cv', cv.id, 'edit']" class="btn btn-sm" data-cy="entityEditButton">
+                <fa-icon class="iconn" icon="pencil-alt"></fa-icon>
+              </a>
+              <button type="submit" (click)="delete(cv)" class="btn btn-sm" data-cy="entityDeleteButton">
+                <fa-icon class="iconn" icon="trash-alt"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filteredCVs && filteredCVs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

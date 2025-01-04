@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (technology()) {
+      <div>
+        <h2 data-cy="technologyDetailsHeading">
+          <span jhiTranslate="rfpApp.technology.detail.title">Technology</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ technology()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.technology.name">Name</span></dt>
+          <dd>
+            <span>{{ technology()!.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.technology.version">Version</span></dt>
+          <dd>
+            <span>{{ technology()!.version }}</span>
+          </dd>
+          <dt><span>User</span></dt>
+          <dd>
+            @for (userConfigs of technology()!.userConfigs; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/user-config', userConfigs.id, 'view']">{{ userConfigs?.username }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/technology', technology()!.id, 'edit']" class="btn btn-success">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

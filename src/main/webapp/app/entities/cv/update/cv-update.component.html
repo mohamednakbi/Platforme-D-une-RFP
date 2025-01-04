@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-cv-heading" data-cy="CVCreateUpdateHeading" jhiTranslate="rfpApp.cV.home.createOrEditLabel">Create or edit a CV</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div hidden class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="rfpApp.cV.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_title" jhiTranslate="rfpApp.cV.title">Title</label>
+          <input type="text" class="form-control" name="title" id="field_title" data-cy="title" formControlName="title" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_content" jhiTranslate="rfpApp.cV.content">Content</label>
+          <input type="text" class="form-control" name="content" id="field_content" data-cy="content" formControlName="content" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_userConfig" jhiTranslate="rfpApp.cV.userConfig">User Config</label>
+          <select
+            class="form-control"
+            id="field_userConfig"
+            data-cy="userConfig"
+            name="userConfig"
+            formControlName="userConfig"
+            [compareWith]="compareUserConfig"
+          >
+            <option [ngValue]="null"></option>
+            @for (userConfigOption of userConfigsCollection; track $index) {
+              <option [ngValue]="userConfigOption">{{ userConfigOption.username }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-outline-primary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-outline-success"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

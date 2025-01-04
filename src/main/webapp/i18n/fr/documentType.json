@@ -1,0 +1,9 @@
+{
+  "rfpApp": {
+    "DocumentType": {
+      "null": "",
+      "EXCEL": "EXCEL",
+      "WORD": "WORD"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "themes": [{
+        "name" : "pfmninza",
+        "types": [ "login"]
+    }]
+}

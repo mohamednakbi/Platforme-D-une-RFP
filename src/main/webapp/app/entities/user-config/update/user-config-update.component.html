@@ -1,0 +1,118 @@
+<div class="modal-content" class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-user-config-heading" data-cy="UserConfigCreateUpdateHeading" jhiTranslate="rfpApp.userConfig.home.createOrEditLabel">
+        Create or edit a User
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div hidden class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="rfpApp.userConfig.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3" hidden>
+          <label class="form-label" for="field_userId" jhiTranslate="rfpApp.userConfig.userId">User Id</label>
+          <input type="text" class="form-control" name="userId" id="field_userId" data-cy="userId" formControlName="userId" />
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_username" jhiTranslate="rfpApp.userConfig.username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            id="field_username"
+            data-cy="username"
+            formControlName="username"
+            [ngClass]="editForm.controls.id.value !== null ? 'read-only' : ''"
+            [readonly]="editForm.controls.id.value !== null"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_email" jhiTranslate="rfpApp.userConfig.email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_firstname" jhiTranslate="rfpApp.userConfig.firstname">Firstname</label>
+          <input type="text" class="form-control" name="firstname" id="field_firstname" data-cy="firstname" formControlName="firstname" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_lastname" jhiTranslate="rfpApp.userConfig.lastname">Lastname</label>
+          <input type="text" class="form-control" name="lastname" id="field_lastname" data-cy="lastname" formControlName="lastname" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_password" jhiTranslate="rfpApp.userConfig.password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            id="field_password"
+            data-cy="password"
+            formControlName="password"
+            appPasswordDirective
+            #passwordField
+          />
+          <!--          <div *ngIf="!passwordsMatch()" class="error">Passwords do not match!</div>-->
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="field_confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="confirmPassword"
+            id="field_confirmPassword"
+            data-cy="confirmpassword"
+            formControlName="confirmpassword"
+            appPasswordDirective
+            #confirmPasswordField
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_role" jhiTranslate="rfpApp.userConfig.role">Role</label>
+          <select class="form-control" id="field_role" data-cy="role" name="role" formControlName="role" [compareWith]="compareRole">
+            <option [ngValue]="null"></option>
+            @for (roleOption of rolesSharedCollection; track $index) {
+              <option [ngValue]="roleOption">{{ roleOption.name }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label style="color: black" for="field_technologys" jhiTranslate="rfpApp.userConfig.technologys">Technologys</label>
+          <select
+            class="form-control"
+            id="field_technologys"
+            data-cy="technologys"
+            multiple
+            name="technologys"
+            formControlName="technologys"
+            [compareWith]="compareTechnology"
+          >
+            @for (technologyOption of technologiesSharedCollection; track $index) {
+              <option [ngValue]="technologyOption">{{ technologyOption.name }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-outline-primary" (click)="previousState1()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button type="submit" id="save-entity" data-cy="entityCreateSaveButton" class="btn btn-outline-success" (click)="previousState()">
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,109 @@
+<nav class="sidebar" [class.open]="isOpen" [class.close]="!isOpen">
+  <mat-nav-list id="site-bar">
+    <a class="buttun-ebtn2" (click)="toggleSidenav()" loading="lazy">
+      <img src="content/images/sliders-horizontal-stroke-rounded.svg" />
+    </a>
+    <ul>
+      <li>
+        <img class="imjj" width="80px" height="80px" src="content/images/req-svgrepo-com%20(1).svg" />
+        <ul class="list">
+          <li>
+            <a (click)="toggleSidenav()" class="nav-link" routerLink="/" [ngClass]="{ selected: currentRoute === '/' }">
+              <span jhiTranslate="global.menu.home">Home</span>
+              <img class="icon" width="30px" height="30px" src="content/images/home-svgrepo-com.svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/technology"
+              [ngClass]="{ selected: currentRoute.startsWith('/technology') }"
+            >
+              <span>Technologies </span>
+              <img class="icon" width="30px" height="30px" src="content/images/folder-svgrepo-com (1).svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a (click)="toggleSidenav()" class="nav-link" routerLink="/role" [ngClass]="{ selected: currentRoute.startsWith('/role') }">
+              <span>Roles</span>
+              <img class="icon" width="30px" height="30px" src="content/images/folder-svgrepo-com (2).svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a (click)="toggleSidenav()" class="nav-link" routerLink="/cv" [ngClass]="{ selected: currentRoute.startsWith('/cv') }">
+              <span>CV</span>
+              <img class="icon" width="30px" height="30px" src="content/images/neon-app-icon-svgrepo-com.svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/user-config"
+              [ngClass]="{ selected: currentRoute.startsWith('/user-config') }"
+            >
+              <span>Users</span>
+              <img class="icon" width="30px" height="30px" src="content/images/user-account-stroke-rounded.svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/document"
+              [ngClass]="{ selected: currentRoute.startsWith('/document') }"
+            >
+              <span>Documents</span>
+              <img class="icon" width="30px" height="30px" src="content/images/audit-02-stroke-rounded.svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/reference"
+              [ngClass]="{ selected: currentRoute.startsWith('/reference') }"
+            >
+              <span>References</span>
+              <img class="icon" width="30px" height="30px" src="content/images/library-stroke-rounded.svg" />
+            </a>
+          </li>
+          <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/context"
+              [ngClass]="{ selected: currentRoute.startsWith('/context') }"
+            >
+              <span>Contexts</span>
+              <img class="icon" width="30px" height="30px" src="content/images/file-validation-stroke-rounded.svg" />
+            </a>
+          </li>
+          <li>
+            <a
+              (click)="toggleSidenav()"
+              class="nav-link"
+              routerLink="/RequestForProposal"
+              [ngClass]="{
+                selected:
+                  currentRoute.startsWith('/RequestForProposal') ||
+                  currentRoute.startsWith('/ResultatRfp') ||
+                  currentRoute.startsWith('/ResultatRFP')
+              }"
+            >
+              <span>Request For Proposal </span>
+              <img class="icon" width="30px" height="30px" src="content/images/codefactor-icon-svgrepo-com.svg" />
+            </a>
+          </li>
+          <li>
+            <a (click)="toggleSidenav()" class="nav-link" id="logout" data-cy="logout" (click)="logout()">
+              <span>Logout</span>
+              <img class="icon" width="30px" height="30px" src="content/images/signout.svg" />
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </mat-nav-list>
+</nav>

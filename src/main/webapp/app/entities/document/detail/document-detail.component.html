@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (document()) {
+      <div>
+        <h2 data-cy="documentDetailsHeading"><span jhiTranslate="rfpApp.document.detail.title">Document</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ document()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.document.title">Title</span></dt>
+          <dd>
+            <span>{{ document()!.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.document.content">Content</span></dt>
+          <dd>
+            <span>{{ document()!.content }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.document.documentType">Document Type</span></dt>
+          <dd>
+            <span [jhiTranslate]="'rfpApp.DocumentType.' + (document()!.documentType ?? 'null')">{{
+              { null: '', EXCEL: 'EXCEL', WORD: 'WORD' }[document()!.documentType ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span>User</span></dt>
+          <dd>
+            @if (document()!.userConfig) {
+              <div>
+                <a [routerLink]="['/user-config', document()!.userConfig?.id, 'view']">{{ document()!.userConfig?.username }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/document', document()!.id, 'edit']" class="btn btn-success">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

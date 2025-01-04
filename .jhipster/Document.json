@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20240424094837"
+  },
+  "applications": ["rfp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "documentType",
+      "fieldType": "DocumentType",
+      "fieldValues": "EXCEL,WORD"
+    }
+  ],
+  "name": "Document",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "userConfig",
+      "otherEntityRelationshipName": "document",
+      "relationshipName": "userConfig",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": false
+}

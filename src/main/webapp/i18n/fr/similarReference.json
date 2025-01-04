@@ -1,0 +1,27 @@
+{
+  "rfpApp": {
+    "similarReference": {
+      "home": {
+        "title": "SimilarReferences",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Similar Reference",
+        "createOrEditLabel": "Créer ou éditer un Similar Reference",
+        "notFound": "Aucun Similar Reference trouvé"
+      },
+      "created": "Un nouveau Similar Reference a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Similar Reference avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Similar Reference avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Similar Reference {{ id }} ?"
+      },
+      "detail": {
+        "title": "Similar Reference"
+      },
+      "id": "ID",
+      "title": "Title",
+      "content": "Content",
+      "lastmodified": "Lastmodified",
+      "userConfig": "User Config"
+    }
+  }
+}

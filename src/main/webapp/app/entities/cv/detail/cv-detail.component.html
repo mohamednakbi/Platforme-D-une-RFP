@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center" style="margin-bottom: 200px">
+  <div class="col-8">
+    @if (cV()) {
+      <div>
+        <h2 data-cy="cVDetailsHeading"><span jhiTranslate="rfpApp.cV.detail.title">CV</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ cV()!.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.cV.title">Title</span></dt>
+          <dd>
+            <span>{{ cV()!.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="rfpApp.cV.content">Content</span></dt>
+          <dd>
+            <span>{{ cV()!.content }}</span>
+          </dd>
+          <dt><span>User </span></dt>
+          <dd>
+            @if (cV()!.userConfig) {
+              <div>
+                <a [routerLink]="['/user-config', cV()!.userConfig?.id, 'view']">{{ cV()!.userConfig?.username }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cv', cV()!.id, 'edit']" class="btn btn-success">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

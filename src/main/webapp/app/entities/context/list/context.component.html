@@ -1,0 +1,117 @@
+<div class="container">
+  <h2 id="page-heading" data-cy="ContextHeading">
+    <span class="title" jhiTranslate="rfpApp.context.home.title">Contexts</span>
+
+    <div class="d-flex justify-content-end">
+      <button hidden class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="rfpApp.context.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-info jh-create-entity create-context"
+        [routerLink]="['/context/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="rfpApp.context.home.createLabel">Create a new Context</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+  <jhi-alert></jhi-alert>
+
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search by name..."
+      [(ngModel)]="ContextName"
+      (ngModelChange)="searchContextByNamee()"
+    />
+  </div>
+
+  <div *ngIf="contexts?.length === 0" class="alert alert-warning" id="no-result">
+    <span jhiTranslate="rfpApp.context.home.notFound">No Contexts found</span>
+  </div>
+
+  <div *ngIf="FilteredContext && FilteredContext.length > 0" class="table-responsive table-entities" id="entities">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.context.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.context.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userConfig.id">
+            <div class="d-flex">
+              <span>Username</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let context of FilteredContext; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/context', context.id, 'view']">{{ context.id }}</a>
+          </td>
+          <td>{{ context.name }}</td>
+          <td>{{ context.description }}</td>
+          <td>
+            <div *ngIf="context.userConfig">
+              <a [routerLink]="['/user-config', context.userConfig.id, 'view']">{{ context.userConfig.username }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/context', context.id, 'view']" class="btn btn-sm" data-cy="entityDetailsButton">
+                <fa-icon class="iconn" icon="eye"></fa-icon>
+              </a>
+              <a [routerLink]="['/context', context.id, 'edit']" class="btn btn-sm" data-cy="entityEditButton">
+                <fa-icon class="iconn" icon="pencil-alt"></fa-icon>
+              </a>
+              <button type="submit" (click)="delete(context)" class="btn btn-sm" data-cy="entityDeleteButton">
+                <fa-icon class="iconn" icon="trash-alt"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="FilteredContext && FilteredContext.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

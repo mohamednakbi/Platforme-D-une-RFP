@@ -1,0 +1,135 @@
+<div class="container">
+  <h2 id="page-heading" data-cy="UserConfigHeading">
+    <span class="tittle">Users</span>
+    <div class="d-flex justify-content-end">
+      <button hidden class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="rfpApp.userConfig.home.refreshListLabel">Refresh list</span>
+      </button>
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-info jh-create-entity create-user-config"
+        [routerLink]="['/user-config/new']"
+      >
+        <fa-icon icon="user-plus"></fa-icon>
+        <span>Add new User</span>
+      </button>
+    </div>
+  </h2>
+
+  <input type="text" [(ngModel)]="USERname" (input)="searchUssersByusername()" placeholder="Search by username" class="form-control mb-3" />
+
+  <jhi-alert-error></jhi-alert-error>
+  <jhi-alert></jhi-alert>
+
+  <div *ngIf="filteredUserConfigs?.length === 0" class="alert alert-danger" id="no-result">
+    <span> No User found</span>
+  </div>
+
+  <div *ngIf="filteredUserConfigs && filteredUserConfigs.length > 0" class="table-responsive table-entities" id="entities">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="userId">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.userId">User Id</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="email">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.email">Email</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="firstname">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.firstname">Firstname</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastname">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.lastname">Lastname</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="username">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.username">Username</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <!--          <th scope="col" jhiSortBy="password">-->
+          <!--            <div class="d-flex">-->
+          <!--              <span jhiTranslate="rfpApp.userConfig.password">Password</span>-->
+          <!--              <fa-icon class="p-1" icon="sort"></fa-icon>-->
+          <!--            </div>-->
+          <!--          </th>-->
+          <th scope="col" jhiSortBy="role.id">
+            <div class="d-flex">
+              <span jhiTranslate="rfpApp.userConfig.role">Role</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userConfig of filteredUserConfigs; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/user-config', userConfig.id, 'view']">{{ userConfig.id }}</a>
+          </td>
+          <td>{{ userConfig.userId }}</td>
+          <td>{{ userConfig.email }}</td>
+          <td>{{ userConfig.firstname }}</td>
+          <td>{{ userConfig.lastname }}</td>
+          <td>{{ userConfig.username }}</td>
+          <!--          <td>{{ userConfig.password }}</td>-->
+          <td>
+            <div *ngIf="userConfig.role">
+              <a [routerLink]="['/role', userConfig.role.id, 'view']">{{ userConfig.role.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <a [routerLink]="['/user-config', userConfig.id, 'view']" class="btn btn-sm" data-cy="entityDetailsButton">
+                <fa-icon class="iconn" icon="eye"></fa-icon>
+              </a>
+              <a [routerLink]="['/user-config', userConfig.id, 'edit']" class="btn btn-sm" data-cy="entityEditButton">
+                <fa-icon class="iconn" icon="pencil-alt"></fa-icon>
+              </a>
+              <button type="submit" (click)="delete(userConfig)" class="btn btn-sm" data-cy="entityDeleteButton">
+                <fa-icon class="iconn" icon="trash-alt"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="filteredUserConfigs && filteredUserConfigs.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

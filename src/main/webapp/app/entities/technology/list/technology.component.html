@@ -1,0 +1,105 @@
+<div class="container">
+  <h2 id="page-heading" data-cy="TechnologyHeading">
+    <span class="tittle" jhiTranslate="rfpApp.technology.home.title">Technologies</span>
+
+    <div class="d-flex justify-content-end">
+      <button hidden class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="rfpApp.technology.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-info jh-create-entity create-technology"
+        [routerLink]="['/technology/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span>Add new Technology</span>
+      </button>
+    </div>
+  </h2>
+  <input
+    type="text"
+    class="form-control me-2"
+    placeholder="Search by title"
+    [(ngModel)]="TechnologiesName"
+    (input)="searchTechnologiesByNamee()"
+  />
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div *ngIf="technologies?.length === 0" class="alert alert-warning" id="no-result">
+    <span jhiTranslate="rfpApp.technology.home.notFound">No Technologies found</span>
+  </div>
+
+  <div *ngIf="technologies && technologies.length > 0" class="table-responsive table-entities" id="entities">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex font-weight-bold">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex font-weight-bold">
+              <span jhiTranslate="rfpApp.technology.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="version">
+            <div class="d-flex font-weight-bold">
+              <span jhiTranslate="rfpApp.technology.version">Version</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let technology of filteredTechnologies ? filteredTechnologies : technologies; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/technology', technology.id, 'view']">{{ technology.id }}</a>
+          </td>
+          <td>{{ technology.name }}</td>
+          <td>{{ technology.version }}</td>
+          <td class="text-end">
+            <div>
+              <a [routerLink]="['/technology', technology.id, 'view']" class="btn btn-sm" data-cy="entityDetailsButton">
+                <fa-icon class="iconn" icon="eye"></fa-icon>
+              </a>
+              <a [routerLink]="['/technology', technology.id, 'edit']" class="btn btn-sm" data-cy="entityEditButton">
+                <fa-icon class="iconn" icon="pencil-alt"></fa-icon>
+              </a>
+              <button type="submit" (click)="delete(technology)" class="btn btn-sm" data-cy="entityDeleteButton">
+                <fa-icon class="iconn" icon="trash-alt"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="technologies && technologies.length > 0">
+    <div class="d-flex justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [page]="page"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="navigateToPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>

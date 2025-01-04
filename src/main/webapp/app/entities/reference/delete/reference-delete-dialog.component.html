@@ -1,0 +1,26 @@
+@if (reference) {
+  <form class="form-remove" name="deleteForm" (ngSubmit)="confirmDelete(reference.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="referenceDeleteDialogHeading" jhiTranslate="entity.delete.title">Confirm delete operation</h4>
+
+      <span class="btn btn-close" data-dismiss="modal" aria-hidden="true" (click)="cancel()"></span>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p id="jhi-delete-reference-heading" jhiTranslate="rfpApp.reference.delete.question" [translateValues]="{ id: reference.title }">
+        Are you sure you want to delete Reference {{ reference.title }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-info" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+      </button>
+
+      <button id="jhi-confirm-delete-reference" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Delete</span>
+      </button>
+    </div>
+  </form>
+}

@@ -1,0 +1,76 @@
+{
+  "annotations": {
+    "changelogDate": "20240424094840"
+  },
+  "applications": ["rfp"],
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "userId",
+      "fieldType": "UUID"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "firstname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastname",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "username",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "password",
+      "fieldType": "String"
+    }
+  ],
+  "name": "UserConfig",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "role",
+      "otherEntityRelationshipName": "userConfig",
+      "relationshipName": "role",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "context",
+      "otherEntityRelationshipName": "userConfig",
+      "relationshipName": "context",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "document",
+      "otherEntityRelationshipName": "userConfig",
+      "relationshipName": "document",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "reference",
+      "otherEntityRelationshipName": "userConfig",
+      "relationshipName": "reference",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "technology",
+      "otherEntityRelationshipName": "userConfigs",
+      "ownerSide": true,
+      "relationshipName": "technologys",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl",
+  "skipServer": false
+}
